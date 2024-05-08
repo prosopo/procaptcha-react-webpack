@@ -1,20 +1,12 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CompressionPlugin = require('compression-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const webpack = require('webpack')
 const TerserPlugin = require('terser-webpack-plugin')
 const path = require('path')
-const { JsonAccessOptimizer } = require('webpack-json-access-optimizer')
-const dotenv = require('dotenv')
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 
 const moduleDirs = [
     path.resolve(__dirname, 'node_modules'),
 ]
-
-
-dotenv.config()
 
 module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production'
