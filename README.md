@@ -1,8 +1,8 @@
 # procaptcha-react-webpack
 
-Demo showing how to use procaptcha react components with webpack. The ProcaptchaFrictionless componet is used in a
-simple React App. This component will require a Proof-of-Work captcha for a normal user or an image captcha if the user
-is likely to be a bot.
+Demo showing how to use procaptcha react components with webpack. The `ProcaptchaFrictionless` component is used in a
+simple React App. This component will require a normal user to complete a Proof-of-Work captcha, or an image captcha if
+the user is likely to be a bot.
 
 ## Setup
 
