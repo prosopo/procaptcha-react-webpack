@@ -30,3 +30,5 @@ npm run start
 ```
 
 Go to http://localhost:9000 in your browser.
+
+![demo](demo.png)
