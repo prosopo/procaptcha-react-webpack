@@ -24,7 +24,7 @@ module.exports = (env, argv) => {
       modules: moduleDirs,
       fullySpecified: false,
       alias: {
-        consola: path.resolve(__dirname, "node_modules/consola"),
+        "consola/browser": path.resolve(__dirname, "node_modules/consola"),
       },
     },
     entry: "./src/index.tsx",
@@ -36,13 +36,13 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /.m?js$/,
+          test: /.[cj]?js$/,
           loader: "babel-loader",
           exclude: /node_modules/,
         },
         // instead of using .babelrc, we can use babel-loader options
         {
-          test: /.m?js$/,
+          test: /.[cj]?js$/,
           exclude: /node_modules/,
           use: {
             loader: "babel-loader",
@@ -99,15 +99,15 @@ module.exports = (env, argv) => {
           },
         },
         {
-          test: /node_modules\/@prosopo\/procaptcha-\w+\/dist\/cjs\/web-components\/dist\/\w+\.cjs$/,
+          test: /node_modules\/@prosopo\/(\w|-)+\/dist\/cjs.*\.cjs$/,
           loader: "string-replace-loader",
           options: {
             search: /styled\.div/g,
-            replace: "(styled.div||styled.default.div)",
+            replace: "(styled.div || styled.default.div)",
           },
         },
         {
-          test: /account\/dist\/extension\/\w+\.cjs$/,
+          test: /node_modules\/@prosopo\/account\/dist\/cjs\/extension\/.*\.cjs$/,
           loader: "string-replace-loader",
           options: {
             search: /new Signer/g,
