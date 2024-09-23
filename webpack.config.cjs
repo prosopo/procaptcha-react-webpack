@@ -36,13 +36,13 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /.m?js$/,
+          test: /.[cj]?js$/,
           loader: "babel-loader",
           exclude: /node_modules/,
         },
         // instead of using .babelrc, we can use babel-loader options
         {
-          test: /.m?js$/,
+          test: /.[cj]?js$/,
           exclude: /node_modules/,
           use: {
             loader: "babel-loader",
@@ -108,22 +108,6 @@ module.exports = (env, argv) => {
         },
         {
           test: /node_modules\/@prosopo\/account\/dist\/cjs\/extension\/.*\.cjs$/,
-          loader: "string-replace-loader",
-          options: {
-            search: /new Signer/g,
-            replace: "new Signer.default",
-          },
-        },
-        {
-          test: /node_modules\/@prosopo\/procaptcha-frictionless\/dist\/cjs\/procaptcha-pow\/dist\/Services\/Manager.cjs$/,
-          loader: "string-replace-loader",
-          options: {
-            search: /util\.solvePoW/g,
-            replace: "(util.solvePoW||util.solvePoW.default)",
-          },
-        },
-        {
-          test: /account\/dist\/extension\/\w+\.cjs$/,
           loader: "string-replace-loader",
           options: {
             search: /new Signer/g,
