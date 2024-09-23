@@ -24,7 +24,7 @@ module.exports = (env, argv) => {
       modules: moduleDirs,
       fullySpecified: false,
       alias: {
-        consola: path.resolve(__dirname, "node_modules/consola"),
+        "consola/browser": path.resolve(__dirname, "node_modules/consola"),
       },
     },
     entry: "./src/index.tsx",
@@ -99,11 +99,27 @@ module.exports = (env, argv) => {
           },
         },
         {
-          test: /node_modules\/@prosopo\/procaptcha-\w+\/dist\/cjs\/web-components\/dist\/\w+\.cjs$/,
+          test: /node_modules\/@prosopo\/(\w|-)+\/dist\/cjs.*\.cjs$/,
           loader: "string-replace-loader",
           options: {
             search: /styled\.div/g,
-            replace: "(styled.div||styled.default.div)",
+            replace: "(styled.div || styled.default.div)",
+          },
+        },
+        {
+          test: /node_modules\/@prosopo\/account\/dist\/cjs\/extension\/.*\.cjs$/,
+          loader: "string-replace-loader",
+          options: {
+            search: /new Signer/g,
+            replace: "new Signer.default",
+          },
+        },
+        {
+          test: /node_modules\/@prosopo\/procaptcha-frictionless\/dist\/cjs\/procaptcha-pow\/dist\/Services\/Manager.cjs$/,
+          loader: "string-replace-loader",
+          options: {
+            search: /util\.solvePoW/g,
+            replace: "(util.solvePoW||util.solvePoW.default)",
           },
         },
         {
